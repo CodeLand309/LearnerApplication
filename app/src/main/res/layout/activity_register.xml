@@ -6,4 +6,116 @@
     android:layout_height="match_parent"
     tools:context=".ui.RegisterActivity">
 
+    <EditText
+        android:id="@+id/edTextSelectSchool"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/viewHeight"
+        android:layout_marginStart="@dimen/marginStart"
+        android:layout_marginTop="@dimen/marginTop"
+        android:layout_marginEnd="@dimen/marginBottom"
+        android:background="@drawable/custom_edit_text"
+        android:gravity="center_vertical"
+        android:hint="@string/selectSchool_EditText"
+        android:inputType="text"
+        android:paddingStart="@dimen/paddingStart"
+        android:textSize="@dimen/textSizeSmall"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edTextStudentEmail" />
+
+    <EditText
+        android:id="@+id/edTextStudentEmail"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/viewHeight"
+        android:layout_marginStart="@dimen/marginStart"
+        android:layout_marginTop="@dimen/marginTop"
+        android:layout_marginEnd="@dimen/marginEnd"
+        android:background="@drawable/custom_edit_text"
+        android:gravity="center_vertical"
+        android:hint="@string/studentEmail_EditText"
+        android:inputType="textEmailAddress"
+        android:paddingStart="@dimen/paddingStart"
+        android:textSize="@dimen/textSizeSmall"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edTextStudentName" />
+
+    <TextView
+        android:id="@+id/labelLetsGetToKnowBetter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/marginStart"
+        android:layout_marginTop="60dp"
+        android:text="@string/knowBetter_Label"
+        android:textColor="@color/black"
+        android:textSize="@dimen/textSizeLarge"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/edTextStudentName"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/viewHeight"
+        android:layout_marginStart="@dimen/marginStart"
+        android:layout_marginTop="@dimen/marginTop"
+        android:layout_marginEnd="@dimen/marginEnd"
+        android:background="@drawable/custom_edit_text"
+        android:gravity="center_vertical"
+        android:hint="@string/studentName_EditText"
+        android:inputType="textPersonName"
+        android:paddingStart="@dimen/paddingStart"
+        android:textSize="@dimen/textSizeSmall"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/labelLetsGetToKnowBetter" />
+
+    <TextView
+        android:id="@+id/labelSelectClass"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/marginStart"
+        android:layout_marginTop="@dimen/marginTop"
+        android:text="@string/selectClass_Label"
+        android:textColor="@color/black"
+        android:textSize="@dimen/textSizeMedium"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edTextSelectSchool" />
+
+    <Spinner
+        android:id="@+id/spinnerSelectClass"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/viewHeight"
+        android:layout_marginStart="@dimen/marginStart"
+        android:layout_marginTop="@dimen/marginTop"
+        android:textAlignment="center"
+        android:background="@drawable/custom_spinner"
+        android:dropDownSelector="@color/black"
+        android:paddingStart="@dimen/paddingStart"
+        android:paddingEnd="@dimen/paddingEnd"
+        android:entries="@array/selectClass_Spinner"
+        android:popupBackground="@drawable/custom_spinner"
+        android:spinnerMode="dropdown"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/labelSelectClass" />
+
+    <Button
+        android:id="@+id/btnNext"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/btnHeight"
+        android:layout_marginStart="@dimen/marginStart"
+        android:layout_marginTop="@dimen/marginTopNextBtn_RegisterActivity"
+        android:layout_marginEnd="@dimen/marginEnd"
+        android:backgroundTint="@color/button1"
+        android:text="@string/next_Button"
+        android:textAlignment="center"
+        android:textAllCaps="false"
+        android:textSize="@dimen/textSizeSmall"
+        app:cornerRadius="@dimen/cornerRadius"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/spinnerSelectClass" />
 </androidx.constraintlayout.widget.ConstraintLayout>

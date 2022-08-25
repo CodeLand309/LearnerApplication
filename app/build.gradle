@@ -68,6 +68,7 @@ dependencies {
     //Retrofit
     implementation 'com.squareup.retrofit2:retrofit:2.9.0'
     implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
+    implementation 'com.squareup.okhttp3:logging-interceptor:3.8.1'
 
     //Coroutines
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutinesVersion"
@@ -75,6 +76,9 @@ dependencies {
 
     //Data Store
     implementation("androidx.datastore:datastore-preferences:1.0.0")
+
+    //Pin View
+    implementation 'io.github.chaosleung:pinview:1.4.4'
 
 }
 

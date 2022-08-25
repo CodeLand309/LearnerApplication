@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <shape xmlns:android="http://schemas.android.com/apk/res/android">
     <!-- Background Color -->
-    <solid android:color="#f9f9f9" />
+    <solid android:color="@color/customEdTextBGColor" />
 
     <!-- Border Color -->
-    <stroke android:width="2dp" android:color="#d6d6d6" />
+    <stroke android:width="@dimen/borderWidth" android:color="@color/customEdTextBorderColor" />
 
     <!-- Round Corners -->
-    <corners android:radius="10dp" />
+    <corners android:radius="@dimen/cornerRadius" />
 </shape>

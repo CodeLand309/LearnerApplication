@@ -4,13 +4,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <!--Image we will display is our slider view-->
     <ImageView
         android:id="@+id/image"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_centerHorizontal="true"
-        android:paddingBottom="30dp"
+        android:paddingBottom="@dimen/paddingBottmImage_Slider"
         android:contentDescription="@string/app_name" />
 
 </RelativeLayout>

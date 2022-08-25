@@ -4,10 +4,14 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/dhans/AndroidStudioProjects/LearnerApplication/app/src/main/res/drawable/custom_edit_text.xml" value="0.125" />
-        <entry key="..\:/Users/dhans/AndroidStudioProjects/LearnerApplication/app/src/main/res/layout/activity_login.xml" value="0.176" />
+        <entry key="..\:/Users/dhans/AndroidStudioProjects/LearnerApplication/app/src/main/res/drawable/custom_otp_view.xml" value="0.121" />
+        <entry key="..\:/Users/dhans/AndroidStudioProjects/LearnerApplication/app/src/main/res/drawable/custom_spinner.xml" value="0.16" />
+        <entry key="..\:/Users/dhans/AndroidStudioProjects/LearnerApplication/app/src/main/res/layout/activity_login.xml" value="0.136" />
         <entry key="..\:/Users/dhans/AndroidStudioProjects/LearnerApplication/app/src/main/res/layout/activity_main.xml" value="0.10989583333333333" />
-        <entry key="..\:/Users/dhans/AndroidStudioProjects/LearnerApplication/app/src/main/res/layout/activity_verification.xml" value="0.12708333333333333" />
+        <entry key="..\:/Users/dhans/AndroidStudioProjects/LearnerApplication/app/src/main/res/layout/activity_register.xml" value="0.264" />
+        <entry key="..\:/Users/dhans/AndroidStudioProjects/LearnerApplication/app/src/main/res/layout/activity_verification.xml" value="0.264" />
         <entry key="..\:/Users/dhans/AndroidStudioProjects/LearnerApplication/app/src/main/res/layout/custom_view_holder.xml" value="0.1" />
+        <entry key="..\:/Users/dhans/AndroidStudioProjects/LearnerApplication/app/src/main/res/layout/otp_item_layout.xml" value="0.536" />
         <entry key="..\:/Users/dhans/AndroidStudioProjects/LearnerApplication/app/src/main/res/layout/slider_layout.xml" value="0.13385416666666666" />
         <entry key="..\:/Users/dhans/AndroidStudioProjects/MyApplication3/app/src/main/res/drawable/custom_edit_text.xml" value="0.168" />
         <entry key="..\:/Users/dhans/AndroidStudioProjects/MyApplication3/app/src/main/res/layout/activity_login.xml" value="0.264" />

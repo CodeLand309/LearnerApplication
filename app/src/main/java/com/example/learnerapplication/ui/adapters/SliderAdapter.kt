@@ -12,7 +12,7 @@ import com.example.learnerapplication.databinding.SliderLayoutBinding
 import com.smarteist.autoimageslider.SliderViewAdapter
 
 
-class SliderAdapter(context: Context?, sliderDataArrayList: ArrayList<SliderData>) :
+class SliderAdapter(sliderDataArrayList: ArrayList<SliderData>) :
     SliderViewAdapter<SliderAdapter.SliderAdapterViewHolder>() {
     private val mSliderItems: List<SliderData>
 

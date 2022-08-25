@@ -2,13 +2,55 @@
     <string name="app_name">Learner Application</string>
     
     <!-- Login Activity Start -->
-        <string name="Signup_Label">Sign Up</string>
+        <string name="signUp_Label">Sign Up</string>
         <string name="phoneNumber_EditText">Phone</string>
-        <string name="ExistingAccount_Label">Already have an account ?</string>
-        <string name="login_Link">Login</string>
+        <string name="existingAccount_Label">Already have an account ?</string>
+        <string name="loginLink_Label">Login</string>
         <string name="GetOTP_button">Get OTP</string>
     <!-- Login Activity End -->
-    
+
+
+    <!-- Register Activity Start -->
+        <string name="verifyOtp_Label">Verify OTP</string>
+        <string name="enterOtp_Label">Enter the OTP sent to the</string>
+        <string name="mobileNumber_Label">Mobile number</string>
+        <string name="MobileNumberValue_Label">+91 91828202029</string>
+        <string name="otp_PinVIew">otp</string>
+        <string name="login_Button">Login</string>
+        <string name="timer_Label">00:45</string>
+        <string-array name="selectClass_Spinner">
+            <item name="default">Select class</item>
+            <item name="class 1">Class 1</item>
+            <item name="class 2">Class 2</item>
+            <item name="class 3">Class 3</item>
+            <item name="class 4">Class 4</item>
+            <item name="class 5">Class 5</item>
+            <item name="class 6">Class 6</item>
+            <item name="class 7">Class 7</item>
+            <item name="class 8">Class 8</item>
+            <item name="class 9">Class 9</item>
+            <item name="class 10">Class 10</item>
+            <item name="class 11">Class 11</item>
+            <item name="class 12">Class 12</item>
+        </string-array>
+    <!-- Register Activity End -->
+
+
+    <!-- Verification Activity Start -->
+        <string name="selectSchool_EditText">Select School</string>
+        <string name="studentEmail_EditText">Student email</string>
+        <string name="knowBetter_Label">Let\'s get to know better</string>
+        <string name="studentName_EditText">Student name</string>
+        <string name="selectClass_Label">Select class</string>
+        <string name="next_Button">Next</string>
+    <string name="InternetErrorMessage">Internet Not connected</string>
+    <string name="PhoneNumberIncorrectMessage">Phone Number Incorrect</string>
+    <string name="ServerIssueMessage">There was some server issue</string>
+    <string name="OutTimeOutMessage">Timeout, Verification Failed</string>
+    <string name="OtpNotEnteredMessage">Enter OTP</string>
+    <!-- Verification Activity End -->
+
+
     
     
 </resources>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--Margins Start -->
+        <dimen name="marginStart">20dp</dimen>
+        <dimen name="marginEnd">20dp</dimen>
+        <dimen name="marginHorizontalTimer_VerificationActivity">179dp</dimen>
+        <dimen name="marginTop">20dp</dimen>
+        <dimen name="marginBottom">20dp</dimen>
+        <dimen name="marginTopNextBtn_RegisterActivity">90dp</dimen>
+        <dimen name="marginTopFromTop">80dp</dimen>
+        <dimen name="marginTopMobileNumber_VerificationAcitivity">5dp</dimen>
+        <dimen name="marginTopPinView_VerificationActivity">40dp</dimen>
+        <dimen name="marginEndAccountExistsLabel_LoginAcitivity">10dp</dimen>
+    <!-- Margins End -->
+
+
+    <!-- Padding Start -->
+        <dimen name="paddingStart">20dp</dimen>
+        <dimen name="paddingEnd">20dp</dimen>
+        <dimen name="paddingBottmImage_Slider">30dp</dimen>
+    <!-- Padding End -->
+
+
+    <!-- TextSize Start-->
+        <dimen name="textSizeSmall">16sp</dimen>
+        <dimen name="textSizeMedium">20sp</dimen>
+        <dimen name="textSizeLarge">24sp</dimen>
+    <!-- TextSize End -->
+
+
+    <!-- Other Dimensions Start-->
+        <dimen name="cornerRadius">10dp</dimen>
+        <dimen name="viewHeight">50dp</dimen>
+        <dimen name="btnHeight">60dp</dimen>
+        <dimen name="sliderMinDimension">400dp</dimen>
+    <dimen name="borderWidth">2dp</dimen>
+    <!-- Other Dimensions End -->
+</resources>
