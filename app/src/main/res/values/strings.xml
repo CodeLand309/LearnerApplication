@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">Learner Application</string>
+    
+    <!-- Login Activity Start -->
+        <string name="Signup_Label">Sign Up</string>
+        <string name="phoneNumber_EditText">Phone</string>
+        <string name="ExistingAccount_Label">Already have an account ?</string>
+        <string name="login_Link">Login</string>
+        <string name="GetOTP_button">Get OTP</string>
+    <!-- Login Activity End -->
+    
+    
+    
+</resources>
