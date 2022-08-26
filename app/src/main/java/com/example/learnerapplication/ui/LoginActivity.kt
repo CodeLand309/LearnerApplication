@@ -41,8 +41,6 @@ class LoginActivity : AppCompatActivity() {
         val sliderDataList = ArrayList<SliderData>()
         lateinit var sliderView: SliderView
 
-        supportActionBar?.hide()
-
         binding.apply {
             sliderView = slider
             sliderDataList.add(SliderData(image1))
@@ -59,11 +57,12 @@ class LoginActivity : AppCompatActivity() {
                 if(!learnerApplication.isNetworkAvailable()){
                     showSnackBar(getString(R.string.InternetErrorMessage), Snackbar.LENGTH_SHORT)
                 }else {
+//                    startActivity(Intent(this@LoginActivity, VerificationActivity::class.java))
                     phoneNumber = edTextPhone.text.toString()
                     if(phoneNumber.length!=10)
                         showSnackBar(getString(R.string.PhoneNumberIncorrectMessage), Snackbar.LENGTH_SHORT)
                     else
-                        viewModel.login(phoneNumber)
+                        viewModel.getOtp(phoneNumber)
                 }
             }
         }

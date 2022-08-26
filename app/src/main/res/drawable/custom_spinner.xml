@@ -1,10 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<shape xmlns:android="http://schemas.android.com/apk/res/android">
-
-    <!-- Background Color -->
-    <solid android:color="@color/spinnerColor" />
-
-    <!-- Round Corners -->
-    <corners android:radius="@dimen/cornerRadius" />
-
-</shape>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <layer-list>
+            <item>
+                <shape android:shape="rectangle">
+                    <solid android:color="@color/spinnerColor"/>
+                    <corners android:radius="@dimen/cornerRadius" />
+                    <padding android:right="10dp" />
+                </shape>
+            </item>
+            <item android:gravity="center_vertical|end"
+                android:start="50dp"
+                android:end="10dp"
+                android:drawable="@drawable/ic_baseline_keyboard_arrow_down_24" >
+            </item>
+        </layer-list>
+    </item>
+</selector>

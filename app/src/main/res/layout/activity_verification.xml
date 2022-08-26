@@ -36,8 +36,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/marginStart"
-        android:layout_marginTop="@dimen/marginTopMobileNumber_VerificationAcitivity"
-        android:layout_marginEnd="@dimen/marginTopMobileNumber_VerificationAcitivity"
+        android:layout_marginTop="@dimen/marginTopMobileNumber_VerificationActivity"
+        android:layout_marginEnd="@dimen/marginTopMobileNumber_VerificationActivity"
         android:singleLine="true"
         android:text="@string/mobileNumber_Label"
         app:layout_constraintEnd_toStartOf="@+id/userPhoneNumber"
@@ -49,7 +49,7 @@
         android:id="@+id/userPhoneNumber"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/marginTopMobileNumber_VerificationAcitivity"
+        android:layout_marginTop="@dimen/marginTopMobileNumber_VerificationActivity"
         android:text="@string/MobileNumberValue_Label"
         android:textColor="@color/black"
         android:textStyle="bold"
@@ -58,28 +58,88 @@
         app:layout_constraintStart_toEndOf="@+id/labelMobileNumber"
         app:layout_constraintTop_toBottomOf="@+id/labelEnterOtp" />
 
-    <com.chaos.view.PinView
+    <LinearLayout
         android:id="@+id/pinViewOtp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/marginStart"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/viewHeight"
+        android:layout_marginStart="30dp"
         android:layout_marginTop="@dimen/marginTopPinView_VerificationActivity"
-        android:layout_marginEnd="@dimen/marginEnd"
+        android:layout_marginEnd="30dp"
         android:hint="@string/otp_PinVIew"
-        android:inputType="number"
-        style="@style/PinWidget.PinView"
-        app:viewType="rectangle"
-        android:itemBackground="@drawable/custom_edit_text"
-        app:flow_horizontalAlign="center"
-        app:itemHeight="50dp"
-        app:itemSpacing="40dp"
-        app:itemWidth="50dp"
+        android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/labelMobileNumber"
-        app:lineColor="@color/white"
-        app:lineHeight="0dp"
-        app:lineWidth="0dp" />
+        app:layout_constraintTop_toBottomOf="@+id/labelMobileNumber">
+
+        <EditText
+            android:id="@+id/edTextOtp1"
+            android:layout_width="50dp"
+            android:layout_height="@dimen/viewHeight"
+            android:maxLength="1"
+            android:singleLine="true"
+            android:textAlignment="center"
+            android:background="@drawable/custom_edit_text"
+            android:inputType="number"
+            android:imeOptions="actionNext"
+            android:nextFocusForward="@+id/edTextOtp2"/>
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="15dp"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="0.1"
+            android:src="@drawable/ic_baseline_remove_24" />
+
+        <EditText
+            android:id="@+id/edTextOtp2"
+            android:layout_width="@dimen/viewHeight"
+            android:layout_height="@dimen/viewHeight"
+            android:maxLength="1"
+            android:singleLine="true"
+            android:textAlignment="center"
+            android:background="@drawable/custom_edit_text"
+            android:inputType="number"
+            android:imeOptions="actionNext"
+            android:nextFocusForward="@+id/edTextOtp3"/>
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="15dp"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="0.1"
+            android:src="@drawable/ic_baseline_remove_24" />
+
+        <EditText
+            android:id="@+id/edTextOtp3"
+            android:layout_width="@dimen/viewHeight"
+            android:layout_height="@dimen/viewHeight"
+            android:maxLength="1"
+            android:textAlignment="center"
+            android:singleLine="true"
+            android:background="@drawable/custom_edit_text"
+            android:inputType="number"
+            android:imeOptions="actionNext"
+            android:nextFocusForward="@+id/edTextOtp4"/>
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="15dp"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="0.1"
+            android:maxLength="1"
+            android:src="@drawable/ic_baseline_remove_24" />
+
+        <EditText
+            android:id="@+id/edTextOtp4"
+            android:layout_width="@dimen/viewHeight"
+            android:layout_height="@dimen/viewHeight"
+            android:maxLength="1"
+            android:singleLine="true"
+            android:textAlignment="center"
+            android:background="@drawable/custom_edit_text"
+            android:inputType="number" />
+
+    </LinearLayout>
 
     <Button
         android:id="@+id/btnLogin"

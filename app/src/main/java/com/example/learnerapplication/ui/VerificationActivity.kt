@@ -4,11 +4,6 @@ import android.content.Intent
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.os.CountDownTimer
-import android.os.SystemClock
-import android.text.Editable
-import android.text.TextWatcher
-import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.activity.viewModels
@@ -32,11 +27,9 @@ class VerificationActivity : AppCompatActivity() {
     private var _binding: ActivityVerificationBinding? = null
     private val binding get() = _binding!!
     private val viewModel: LoginViewModel by viewModels()
-    private val TAG: String= "Verification Activity"
-    private var isRunning: Boolean = false
-    private var timeLeftInMilliSeconds: Long = 60000
-    private lateinit var userEnterOTP: String
-    private lateinit var countDownTimer: CountDownTimer
+    private val TAG: String = "Verification Activity"
+    private var userEnterOTP: String = ""
+    private var isRunning: Boolean = true
 
     @Inject
     lateinit var learnerApplication: LearnerApplication
@@ -47,100 +40,135 @@ class VerificationActivity : AppCompatActivity() {
         _binding = ActivityVerificationBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        supportActionBar?.hide()
+
 
         val message = intent.extras?.get("Message").toString()
         val user_id = intent.extras?.get("User ID").toString()
         val mobileNumber = intent.extras?.get("Mobile").toString()
 
-//        Toast.makeText(this@VerificationActivity, "$message $user_id", Toast.LENGTH_SHORT).show()
-        val otp = message.trim().replace("""[^0-9]""".toRegex(),"")
-//        Thread.sleep(2000)
-//        Log.d(TAG, "otp: $otp")
-        Toast.makeText(this@VerificationActivity, otp, Toast.LENGTH_SHORT).show()
-//        val otpArray = otp.toCharArray()
+        val otpArray = extractOtpFromResponse(message)
         binding.apply {
 
-            userPhoneNumber.text = "+91 $mobileNumber"
-            pinViewOtp.addTextChangedListener(object: TextWatcher{
-                override fun beforeTextChanged(charSequence: CharSequence, p1: Int, p2: Int, p3: Int) {
+            userPhoneNumber.text = getString(R.string.countryCodeIndia) + " $mobileNumber"
 
-                }
-
-                override fun onTextChanged(charSequence: CharSequence?, p1: Int, p2: Int, p3: Int) {
-                    if(charSequence.toString().length==4){
-                        userEnterOTP = charSequence.toString()
-                    }
-                }
-
-                override fun afterTextChanged(editable: Editable?) {
-
-                }
-
-            })
+            if (userEnterOTP.isNotEmpty()) {
+                edTextOtp1.setText(otpArray[0].toString())
+                edTextOtp2.setText(otpArray[1].toString())
+                edTextOtp3.setText(otpArray[2].toString())
+                edTextOtp4.setText(otpArray[3].toString())
+            }
 
             btnLogin.setOnClickListener {
-                if(userEnterOTP.isNotEmpty()) {
-                    if (learnerApplication.isNetworkAvailable())
-                        viewModel.verifyOtp(userEnterOTP, user_id.toLong())
-                    else
-                        showSnackBar(getString(R.string.InternetErrorMessage), Snackbar.LENGTH_SHORT)
-                }
-                else
-                    showSnackBar(getString(R.string.OtpNotEnteredMessage), Snackbar.LENGTH_SHORT)
-            }
-
-            countDownTimer = object: CountDownTimer(timeLeftInMilliSeconds, 1000){
-                override fun onTick(l: Long) {
-                    timeLeftInMilliSeconds = l
-                    updateTimer()
-                }
-
-                override fun onFinish() {
-                    cancel()
-                    timer.visibility = View.INVISIBLE
-                    showSnackBar(getString(R.string.OutTimeOutMessage), Snackbar.LENGTH_SHORT)
-                }
-            }.start()
-        }
-
-        lifecycleScope.launch(Dispatchers.Unconfined) {
-            viewModel.eventsFlow.collect { event ->
-                when(event){
-                    is LoginViewModel.LoginEvents.UserEnterOTP -> {
-                        handleOtpVerificationResult(event.details, event.authToken, event.user)
+                if (learnerApplication.isNetworkAvailable()) {
+                    if (btnLogin.text.equals(getString(R.string.GetOTP_button))) {
+                        viewModel.cancelTimer()
+                        viewModel.getOtp(mobileNumber)
+                    } else {
+                        readOtp()
+                        if (userEnterOTP.isNotEmpty()) {
+                            viewModel.verifyOtp(userEnterOTP, user_id.toLong())
+                        } else
+                            showSnackBar(
+                                getString(R.string.OtpNotEnteredMessage),
+                                Snackbar.LENGTH_SHORT
+                            )
                     }
-                    else -> {}
+                } else {
+                    showSnackBar(
+                        getString(R.string.InternetErrorMessage),
+                        Snackbar.LENGTH_SHORT
+                    )
+                }
+            }
+            if (!viewModel.timerStartedOnce) {
+                timer.visibility = View.VISIBLE
+                viewModel.startTimer()
+            }
+
+            lifecycleScope.launch(Dispatchers.Unconfined) {
+                viewModel.eventsFlow.collect { event ->
+                    when (event) {
+                        is LoginViewModel.LoginEvents.UserEnterOTP -> {
+                            handleOtpVerificationResult(event.details, event.authToken, event.user)
+                        }
+                        is LoginViewModel.LoginEvents.UserEnterPhoneNumber -> {
+                            handleLoginResult(event.message, event.user_id)
+                        }
+                    }
+                }
+            }
+
+            viewModel.getTimeLeft().observe(this@VerificationActivity) { timeLeft ->
+                timer.text = timeLeft
+            }
+
+            viewModel.isRunning.observe(this@VerificationActivity) { running ->
+                if (!running) {
+                    timer.visibility = View.INVISIBLE
+                    if (!viewModel.otpVerified) {
+                        edTextOtp1.text.clear()
+                        edTextOtp2.text.clear()
+                        edTextOtp3.text.clear()
+                        edTextOtp4.text.clear()
+                        showSnackBar(getString(R.string.OutTimeOutMessage), Snackbar.LENGTH_SHORT)
+                        btnLogin.text = getString(R.string.GetOTP_button)
+                    }
+                } else {
+                    isRunning = running
+                    timer.visibility = View.VISIBLE
                 }
             }
         }
     }
 
-    private fun handleOtpVerificationResult(details: Boolean?, authToken: AuthToken?, user: Users?){
-        if(details==null || authToken==null || user==null) {
-            showSnackBar(getString(R.string.ServerIssueMessage), Snackbar.LENGTH_SHORT)
-        }else{
-            countDownTimer.cancel()
-            startActivity(Intent(this@VerificationActivity, RegisterActivity::class.java))
+    private fun extractOtpFromResponse(message: String): CharArray {
+        userEnterOTP = message.trim().replace("""[^0-9]""".toRegex(), "")
+        Toast.makeText(this@VerificationActivity, userEnterOTP, Toast.LENGTH_SHORT).show()
+        return userEnterOTP.toCharArray()
+    }
+
+    private fun readOtp() {
+        binding.apply {
+            val otp1 = edTextOtp1.text.toString()
+            val otp2 = edTextOtp2.text.toString()
+            val otp3 = edTextOtp3.text.toString()
+            val otp4 = edTextOtp4.text.toString()
+            if (otp1.isNotEmpty() || otp2.isNotEmpty() || otp3.isNotEmpty() || otp4.isNotEmpty())
+                userEnterOTP = otp1 + otp2 + otp3 + otp4
         }
     }
 
-    private fun showSnackBar(msg: String, duration: Int){
-        Snackbar.make(binding.root, msg, duration).show()
+    private fun handleLoginResult(message: String?, userId: Long?) {
+        if (userId == null || message == null) {
+            showSnackBar(getString(R.string.ServerIssueMessage), Snackbar.LENGTH_SHORT)
+        } else {
+            extractOtpFromResponse(message)
+            viewModel.startTimer()
+            binding.btnLogin.text = getString(R.string.login_Button)
+        }
     }
 
-    fun updateTimer(){
-        val minutes: Long = (timeLeftInMilliSeconds / 60000)
-        val seconds: Long = (timeLeftInMilliSeconds % 60000 / 1000)
+    private fun handleOtpVerificationResult(
+        details: Boolean?,
+        authToken: AuthToken?,
+        user: Users?
+    ) {
+        if (details == null || authToken == null || user == null) {
+            showSnackBar(getString(R.string.ServerIssueMessage), Snackbar.LENGTH_SHORT)
+        } else {
+            binding.timer.visibility = View.VISIBLE
+            viewModel.cancelTimer()
+            if (details) {
+                startActivity(Intent(this@VerificationActivity, HomeActivity::class.java))
+                finish()
+            } else {
+                startActivity(Intent(this@VerificationActivity, RegisterActivity::class.java))
+                finish()
+            }
+        }
+    }
 
-        var timeLeftText =""
-        if(minutes<10)
-            timeLeftText = "0"
-        timeLeftText += "$minutes:"
-        if(seconds<10)
-            timeLeftText += "0"
-        timeLeftText += seconds
-
-        binding.timer.text = timeLeftText
+    private fun showSnackBar(msg: String, duration: Int) {
+        Snackbar.make(binding.root, msg, duration).show()
     }
 }

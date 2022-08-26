@@ -85,20 +85,21 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/edTextSelectSchool" />
 
+
     <Spinner
         android:id="@+id/spinnerSelectClass"
+        android:minWidth="@dimen/spinnerWidth"
         android:layout_width="wrap_content"
         android:layout_height="@dimen/viewHeight"
         android:layout_marginStart="@dimen/marginStart"
         android:layout_marginTop="@dimen/marginTop"
-        android:textAlignment="center"
         android:background="@drawable/custom_spinner"
-        android:dropDownSelector="@color/black"
         android:paddingStart="@dimen/paddingStart"
         android:paddingEnd="@dimen/paddingEnd"
         android:entries="@array/selectClass_Spinner"
-        android:popupBackground="@drawable/custom_spinner"
+        android:popupBackground="@drawable/custom_spinner_drop_down"
         android:spinnerMode="dropdown"
+        android:textAlignment="center"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/labelSelectClass" />
 

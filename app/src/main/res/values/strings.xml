@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">Learner Application</string>
-    
+
     <!-- Login Activity Start -->
         <string name="signUp_Label">Sign Up</string>
         <string name="phoneNumber_EditText">Phone</string>
@@ -43,14 +43,20 @@
         <string name="studentName_EditText">Student name</string>
         <string name="selectClass_Label">Select class</string>
         <string name="next_Button">Next</string>
-    <string name="InternetErrorMessage">Internet Not connected</string>
-    <string name="PhoneNumberIncorrectMessage">Phone Number Incorrect</string>
-    <string name="ServerIssueMessage">There was some server issue</string>
-    <string name="OutTimeOutMessage">Timeout, Verification Failed</string>
-    <string name="OtpNotEnteredMessage">Enter OTP</string>
+        <string name="InternetErrorMessage">Internet Not connected</string>
+        <string name="PhoneNumberIncorrectMessage">Phone Number Incorrect</string>
+        <string name="ServerIssueMessage">There was some server issue</string>
+        <string name="OutTimeOutMessage">Timeout, Get Otp Again</string>
+        <string name="OtpNotEnteredMessage">Enter OTP</string>
+        <string name="splashScreenText">Learner</string>
     <!-- Verification Activity End -->
 
+    <!-- Home Activity Start -->
+        <string name="welcomeBackMsg_HomeActivity">Welcome Back!</string>
+    <!-- Home Activity End -->
 
-    
-    
+    <!-- Other Strings End -->
+        <string name="countryCodeIndia">+91</string>
+    <!-- Other String End -->
+
 </resources>

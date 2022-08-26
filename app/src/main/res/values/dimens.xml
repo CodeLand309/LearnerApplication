@@ -9,7 +9,7 @@
         <dimen name="marginBottom">20dp</dimen>
         <dimen name="marginTopNextBtn_RegisterActivity">90dp</dimen>
         <dimen name="marginTopFromTop">80dp</dimen>
-        <dimen name="marginTopMobileNumber_VerificationAcitivity">5dp</dimen>
+        <dimen name="marginTopMobileNumber_VerificationActivity">5dp</dimen>
         <dimen name="marginTopPinView_VerificationActivity">40dp</dimen>
         <dimen name="marginEndAccountExistsLabel_LoginAcitivity">10dp</dimen>
     <!-- Margins End -->
@@ -26,6 +26,7 @@
         <dimen name="textSizeSmall">16sp</dimen>
         <dimen name="textSizeMedium">20sp</dimen>
         <dimen name="textSizeLarge">24sp</dimen>
+        <dimen name="textSizeExtraLarge">40sp</dimen>
     <!-- TextSize End -->
 
 
@@ -34,6 +35,7 @@
         <dimen name="viewHeight">50dp</dimen>
         <dimen name="btnHeight">60dp</dimen>
         <dimen name="sliderMinDimension">400dp</dimen>
-    <dimen name="borderWidth">2dp</dimen>
+        <dimen name="borderWidth">2dp</dimen>
+        <dimen name="spinnerWidth">170dp</dimen>
     <!-- Other Dimensions End -->
 </resources>
