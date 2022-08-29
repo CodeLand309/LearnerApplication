@@ -7,7 +7,6 @@ import android.os.Handler
 import android.os.Looper
 import androidx.lifecycle.lifecycleScope
 import com.example.learnerapplication.data.preferences.TokenPreferenceManager
-import com.example.learnerapplication.ui.activities.LoginActivity
 import com.example.learnerapplication.ui.activities.LoginFlowActivity
 import com.example.learnerapplication.ui.activities.RegisterActivity
 import dagger.hilt.android.AndroidEntryPoint

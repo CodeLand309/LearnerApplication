@@ -1,9 +1,7 @@
 package com.example.learnerapplication.ui.fragments
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.View
-import androidx.activity.viewModels
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
@@ -12,7 +10,6 @@ import com.example.learnerapplication.LearnerApplication
 import com.example.learnerapplication.R
 import com.example.learnerapplication.data.model.SliderData
 import com.example.learnerapplication.databinding.FragmentGetOtpBinding
-import com.example.learnerapplication.ui.activities.VerificationActivity
 import com.example.learnerapplication.ui.activities.viewModels.LoginViewModel
 import com.example.learnerapplication.ui.adapters.SliderAdapter
 import com.google.android.material.snackbar.Snackbar
