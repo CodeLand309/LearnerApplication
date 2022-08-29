@@ -1,20 +1,21 @@
-package com.example.learnerapplication.ui
+package com.example.learnerapplication.ui.fragments
 
 import android.content.Intent
-import android.os.Build
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
-import androidx.activity.viewModels
-import androidx.annotation.RequiresApi
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.navArgs
 import com.example.learnerapplication.LearnerApplication
 import com.example.learnerapplication.R
 import com.example.learnerapplication.data.model.AuthToken
 import com.example.learnerapplication.data.model.Users
-import com.example.learnerapplication.databinding.ActivityVerificationBinding
-import com.example.learnerapplication.ui.viewModels.LoginViewModel
+import com.example.learnerapplication.databinding.FragmentVerifyOtpBinding
+import com.example.learnerapplication.ui.activities.HomeActivity
+import com.example.learnerapplication.ui.activities.RegisterActivity
+import com.example.learnerapplication.ui.activities.viewModels.LoginViewModel
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Dispatchers
@@ -22,34 +23,34 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class VerificationActivity : AppCompatActivity() {
+class VerifyOtpFragment : Fragment(R.layout.fragment_verify_otp) {
 
-    private var _binding: ActivityVerificationBinding? = null
+    private var _binding: FragmentVerifyOtpBinding? = null
     private val binding get() = _binding!!
     private val viewModel: LoginViewModel by viewModels()
     private val TAG: String = "Verification Activity"
     private var userEnterOTP: String = ""
     private var isRunning: Boolean = true
+    private val args: VerifyOtpFragmentArgs by navArgs()
 
     @Inject
     lateinit var learnerApplication: LearnerApplication
 
-    @RequiresApi(Build.VERSION_CODES.N)
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        _binding = ActivityVerificationBinding.inflate(layoutInflater)
-        setContentView(binding.root)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        _binding = FragmentVerifyOtpBinding.bind(view)
 
-
-
-        val message = intent.extras?.get("Message").toString()
-        val user_id = intent.extras?.get("User ID").toString()
-        val mobileNumber = intent.extras?.get("Mobile").toString()
+        val message = args.message
+        val user_id = args.userID
+        val mobileNumber = args.mobile
 
         val otpArray = extractOtpFromResponse(message)
         binding.apply {
 
             userPhoneNumber.text = getString(R.string.countryCodeIndia) + " $mobileNumber"
+
+            if(viewModel.timeOutMsgShown)
+                btnLogin.text = getString(R.string.GetOTP_button)
 
             if (userEnterOTP.isNotEmpty()) {
                 edTextOtp1.setText(otpArray[0].toString())
@@ -60,13 +61,13 @@ class VerificationActivity : AppCompatActivity() {
 
             btnLogin.setOnClickListener {
                 if (learnerApplication.isNetworkAvailable()) {
-                    if (btnLogin.text.equals(getString(R.string.GetOTP_button))) {
+                    if (checkBtnText()) {
                         viewModel.cancelTimer()
                         viewModel.getOtp(mobileNumber)
                     } else {
                         readOtp()
                         if (userEnterOTP.isNotEmpty()) {
-                            viewModel.verifyOtp(userEnterOTP, user_id.toLong())
+                            viewModel.verifyOtp(userEnterOTP, user_id)
                         } else
                             showSnackBar(
                                 getString(R.string.OtpNotEnteredMessage),
@@ -98,20 +99,21 @@ class VerificationActivity : AppCompatActivity() {
                 }
             }
 
-            viewModel.getTimeLeft().observe(this@VerificationActivity) { timeLeft ->
+            viewModel.getTimeLeft().observe(viewLifecycleOwner) { timeLeft ->
                 timer.text = timeLeft
             }
 
-            viewModel.isRunning.observe(this@VerificationActivity) { running ->
+            viewModel.isRunning.observe(viewLifecycleOwner) { running ->
                 if (!running) {
                     timer.visibility = View.INVISIBLE
-                    if (!viewModel.otpVerified) {
+                    if (!viewModel.otpVerified && !viewModel.timeOutMsgShown) {
                         edTextOtp1.text.clear()
                         edTextOtp2.text.clear()
                         edTextOtp3.text.clear()
                         edTextOtp4.text.clear()
-                        showSnackBar(getString(R.string.OutTimeOutMessage), Snackbar.LENGTH_SHORT)
+                        showSnackBar(getString(R.string.TimeOutMessage), Snackbar.LENGTH_SHORT)
                         btnLogin.text = getString(R.string.GetOTP_button)
+                        viewModel.timeOutMsgShown = true
                     }
                 } else {
                     isRunning = running
@@ -119,21 +121,32 @@ class VerificationActivity : AppCompatActivity() {
                 }
             }
         }
+
+
     }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
+
+    private fun checkBtnText() = binding.btnLogin.text.equals(getString(R.string.GetOTP_button))
 
     private fun extractOtpFromResponse(message: String): CharArray {
         userEnterOTP = message.trim().replace("""[^0-9]""".toRegex(), "")
-        Toast.makeText(this@VerificationActivity, userEnterOTP, Toast.LENGTH_SHORT).show()
+        if(!viewModel.timerStartedOnce || checkBtnText())
+            Toast.makeText(context, userEnterOTP, Toast.LENGTH_SHORT).show()
         return userEnterOTP.toCharArray()
     }
 
     private fun readOtp() {
         binding.apply {
+            userEnterOTP=""
             val otp1 = edTextOtp1.text.toString()
             val otp2 = edTextOtp2.text.toString()
             val otp3 = edTextOtp3.text.toString()
             val otp4 = edTextOtp4.text.toString()
-            if (otp1.isNotEmpty() || otp2.isNotEmpty() || otp3.isNotEmpty() || otp4.isNotEmpty())
+            if (otp1.isNotEmpty() && otp2.isNotEmpty() && otp3.isNotEmpty() && otp4.isNotEmpty())
                 userEnterOTP = otp1 + otp2 + otp3 + otp4
         }
     }
@@ -159,11 +172,11 @@ class VerificationActivity : AppCompatActivity() {
             binding.timer.visibility = View.VISIBLE
             viewModel.cancelTimer()
             if (details) {
-                startActivity(Intent(this@VerificationActivity, HomeActivity::class.java))
-                finish()
+                startActivity(Intent(requireActivity(), HomeActivity::class.java))
+                requireActivity().finish()
             } else {
-                startActivity(Intent(this@VerificationActivity, RegisterActivity::class.java))
-                finish()
+                startActivity(Intent(requireActivity(), RegisterActivity::class.java))
+                requireActivity().finish()
             }
         }
     }

@@ -14,10 +14,13 @@
         <entry key="..\:/Users/dhans/AndroidStudioProjects/LearnerApplication/app/src/main/res/drawable/ic_round_school_24.xml" value="0.2205" />
         <entry key="..\:/Users/dhans/AndroidStudioProjects/LearnerApplication/app/src/main/res/layout/activity_home.xml" value="0.23641304347826086" />
         <entry key="..\:/Users/dhans/AndroidStudioProjects/LearnerApplication/app/src/main/res/layout/activity_login.xml" value="0.2" />
+        <entry key="..\:/Users/dhans/AndroidStudioProjects/LearnerApplication/app/src/main/res/layout/activity_login_flow.xml" value="0.23641304347826086" />
         <entry key="..\:/Users/dhans/AndroidStudioProjects/LearnerApplication/app/src/main/res/layout/activity_main.xml" value="0.152" />
         <entry key="..\:/Users/dhans/AndroidStudioProjects/LearnerApplication/app/src/main/res/layout/activity_register.xml" value="0.4" />
         <entry key="..\:/Users/dhans/AndroidStudioProjects/LearnerApplication/app/src/main/res/layout/activity_verification.xml" value="0.4" />
         <entry key="..\:/Users/dhans/AndroidStudioProjects/LearnerApplication/app/src/main/res/layout/custom_view_holder.xml" value="0.1" />
+        <entry key="..\:/Users/dhans/AndroidStudioProjects/LearnerApplication/app/src/main/res/layout/fragment_get_otp.xml" value="0.23641304347826086" />
+        <entry key="..\:/Users/dhans/AndroidStudioProjects/LearnerApplication/app/src/main/res/layout/fragment_verify_otp.xml" value="0.17827868852459017" />
         <entry key="..\:/Users/dhans/AndroidStudioProjects/LearnerApplication/app/src/main/res/layout/otp_item_layout.xml" value="0.536" />
         <entry key="..\:/Users/dhans/AndroidStudioProjects/LearnerApplication/app/src/main/res/layout/slider_layout.xml" value="0.13385416666666666" />
         <entry key="..\:/Users/dhans/AndroidStudioProjects/MyApplication3/app/src/main/res/drawable/custom_edit_text.xml" value="0.168" />

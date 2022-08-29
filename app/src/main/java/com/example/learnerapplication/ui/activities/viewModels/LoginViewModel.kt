@@ -1,4 +1,4 @@
-package com.example.learnerapplication.ui.viewModels
+package com.example.learnerapplication.ui.activities.viewModels
 
 import android.os.CountDownTimer
 import androidx.lifecycle.LiveData
@@ -31,6 +31,7 @@ class LoginViewModel @Inject constructor(
     private var timeLeftInMilliSeconds: Long = 60000
     private lateinit var countDownTimer: CountDownTimer
     var isRunning: MutableLiveData<Boolean> = MutableLiveData(true)
+    var timeOutMsgShown = false
     private var timeLeftString: MutableLiveData<String> = MutableLiveData()
     var timerStartedOnce: Boolean = false
     var otpVerified: Boolean = false
@@ -72,8 +73,10 @@ class LoginViewModel @Inject constructor(
         timerStartedOnce = true
         countDownTimer = object: CountDownTimer(timeLeftInMilliSeconds, 1000){
             override fun onTick(l: Long) {
-                if(isRunning.value==false)
+                if(isRunning.value==false) {
                     isRunning.value = true
+                    timeOutMsgShown = false
+                }
                 timeLeftInMilliSeconds = l
                 updateTimer()
             }
