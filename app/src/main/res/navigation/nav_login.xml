@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_login"
+    app:startDestination="@id/getOtpFragment">
+
+    <fragment
+        android:id="@+id/getOtpFragment"
+        android:name="com.example.learnerapplication.ui.fragments.GetOtpFragment"
+        android:label="Get OTP"
+        tools:layout="@layout/fragment_get_otp">
+        <action
+            android:id="@+id/action_getOtpFragment_to_verifyOtpFragment"
+            app:destination="@id/verifyOtpFragment"
+            app:launchSingleTop="false" />
+    </fragment>
+    <fragment
+        android:id="@+id/verifyOtpFragment"
+        android:name="com.example.learnerapplication.ui.fragments.VerifyOtpFragment"
+        android:label="Verify OTP"
+        tools:layout="@layout/fragment_verify_otp">
+        <argument
+            android:name="Message"
+            android:defaultValue=""
+            app:argType="string" />
+        <argument
+            android:name="UserID"
+            android:defaultValue="-1L"
+            app:argType="long" />
+        <argument
+            android:name="Mobile"
+            android:defaultValue=""
+            app:argType="string" />
+    </fragment>
+</navigation>

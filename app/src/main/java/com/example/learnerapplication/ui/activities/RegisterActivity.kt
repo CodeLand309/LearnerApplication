@@ -1,11 +1,10 @@
-package com.example.learnerapplication.ui
+package com.example.learnerapplication.ui.activities
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
-import android.widget.Spinner
 import android.widget.Toast
 import com.example.learnerapplication.R
 import com.example.learnerapplication.databinding.ActivityRegisterBinding

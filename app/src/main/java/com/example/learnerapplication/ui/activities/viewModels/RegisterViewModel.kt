@@ -1,11 +1,8 @@
-package com.example.learnerapplication.ui.viewModels
+package com.example.learnerapplication.ui.activities.viewModels
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.learnerapplication.data.model.AuthResponse
-import com.example.learnerapplication.data.model.AuthToken
 import com.example.learnerapplication.data.model.Users
-import com.example.learnerapplication.data.model.VerificationResponse
 import com.example.learnerapplication.data.repository.AuthRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.channels.Channel

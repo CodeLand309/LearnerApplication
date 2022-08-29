@@ -7,8 +7,8 @@ import android.os.Handler
 import android.os.Looper
 import androidx.lifecycle.lifecycleScope
 import com.example.learnerapplication.data.preferences.TokenPreferenceManager
-import com.example.learnerapplication.ui.LoginActivity
-import com.example.learnerapplication.ui.RegisterActivity
+import com.example.learnerapplication.ui.activities.LoginFlowActivity
+import com.example.learnerapplication.ui.activities.RegisterActivity
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
@@ -32,9 +32,9 @@ class MainActivity : AppCompatActivity() {
                         finish()
                     }
                     else {
-                        startActivity(Intent(this@MainActivity, LoginActivity::class.java))
+                        startActivity(Intent(this@MainActivity, LoginFlowActivity::class.java))
                         finish()
-                    }}, 1500)
+                    }}, 1000)
                 }
             }
         }
