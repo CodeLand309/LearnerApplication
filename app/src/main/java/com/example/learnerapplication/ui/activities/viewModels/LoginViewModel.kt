@@ -57,7 +57,7 @@ class LoginViewModel @Inject constructor(
             if(resultVerifyOtp != null){
                 resultVerifyOtp!!.run {
                     val authToken = authToken
-                    preferenceManager.updateAccessTokenPref(TokenPreference(authToken.accessToken, authToken.refreshToken, true))
+                    preferenceManager.updateAccessTokenPref(TokenPreference(authToken.accessToken, authToken.refreshToken, true, details))
                     otpVerified=true
                     eventsChannel.send(LoginEvents.UserEnterOTP(user, details, authToken))
                 }

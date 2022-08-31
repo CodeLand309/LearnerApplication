@@ -53,6 +53,7 @@
 
     <!-- Home Activity Start -->
     <string name="welcomeBackMsg_HomeActivity">Welcome Back!</string>
+    <string name="logOut_Button">Log out</string>
     <!-- Home Activity End -->
 
     <!-- Other Strings End -->

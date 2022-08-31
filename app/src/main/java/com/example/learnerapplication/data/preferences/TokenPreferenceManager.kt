@@ -13,7 +13,8 @@ import javax.inject.Inject
 data class TokenPreference(
     val accessToken: String,
     val refreshToken: String,
-    val otpVerification: Boolean
+    val otpVerification: Boolean,
+    val details: Boolean
 )
 
 class TokenPreferenceManager @Inject constructor(
@@ -29,6 +30,7 @@ class TokenPreferenceManager @Inject constructor(
         val accessToken = stringPreferencesKey("Access Token")
         val refreshToken = stringPreferencesKey("Refresh Token")
         val otpVerification = booleanPreferencesKey("Verified")
+        val details = booleanPreferencesKey("Details")
     }
 
     suspend fun updateAccessTokenPref(tokenPreference: TokenPreference){
@@ -36,6 +38,13 @@ class TokenPreferenceManager @Inject constructor(
             it[AccessTokenKeys.accessToken] = tokenPreference.accessToken
             it[AccessTokenKeys.refreshToken] = tokenPreference.refreshToken
             it[AccessTokenKeys.otpVerification] = tokenPreference.otpVerification
+            it[AccessTokenKeys.details] = tokenPreference.details
+        }
+    }
+
+    suspend fun updateAccessTokenDetailsKey(details: Boolean) {
+        context.accessTokenPreferenceDataStore.edit {
+            it[AccessTokenKeys.details] = details
         }
     }
 
@@ -49,7 +58,8 @@ class TokenPreferenceManager @Inject constructor(
         val authToken = it[AccessTokenKeys.accessToken]?: ""
         val refreshToken = it[AccessTokenKeys.refreshToken]?: ""
         val otpVerified = it[AccessTokenKeys.otpVerification]?: false
-        TokenPreference(authToken, refreshToken, otpVerified)
+        val details = it[AccessTokenKeys.details]?: false
+        TokenPreference(authToken, refreshToken, otpVerified, details)
     }
 
 }
